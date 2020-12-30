@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 func main() {
+
 	var cards deck
 
 	fmt.Println("======== CARDS ========")
@@ -50,14 +52,23 @@ func main() {
 			}
 		case "4":
 			fmt.Println("=== Please choose a filename ===")
+
 			var fileName string
 			fmt.Scanln(&fileName)
 
-			cards.saveToFile(fileName)
+			if cards != nil {
+				err := cards.saveToFile(fileName)
+
+				if err != nil {
+					log.Fatal("There was an issue while saving your file")
+				}
+			}
+
 			fmt.Println("=== File Saved !!! ===")
 
 		case "5":
 			fmt.Println("=== What's the filename? ===")
+
 			var fileName string
 			fmt.Scanln(&fileName)
 
